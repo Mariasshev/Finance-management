@@ -1,16 +1,17 @@
 #pragma once
+#include "Wallet.h"
 #include <iostream>
 using namespace std;
 
-class Finance
-{
+class Finance{
 protected:
 	//Wallet wallet;
+	double curr_balance;
 	string date;
 public:
-	virtual void TopUp() const = 0;		//to top up a card or add cash to wallet
-	virtual void EnterCosts() const = 0;		//enter costs 
-	virtual void Print() = 0;
-	void ShowAllInf();		//read information from file
+	Finance() = default;
+	virtual void TopUp();		//to top up a card or add cash to wallet
+	virtual void EnterCosts();		//enter costs 
+	virtual void Print();
 };
 
