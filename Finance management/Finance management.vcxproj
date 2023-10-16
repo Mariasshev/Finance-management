@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Category.h" />
     <ClInclude Include="Credit.h" />
     <ClInclude Include="Debit.h" />
     <ClInclude Include="Finance.h" />
