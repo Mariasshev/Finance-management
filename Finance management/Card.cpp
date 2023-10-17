@@ -6,8 +6,8 @@ Card::Card()
 	pin = new int[3];
 }
 
-void Card::EnterData()
-{
+void Card::EnterData() {
+
 }
 
 void Card::TopUp()
@@ -25,6 +25,12 @@ void Card::Print()
 void Card::SetPayment(string* p)
 {
 	paymentSystem = p;
+}
+
+
+string* Card::GetPayment()
+{
+	return paymentSystem;
 }
 
 int Card::GetAmountOfCard()

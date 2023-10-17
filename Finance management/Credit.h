@@ -1,5 +1,6 @@
 #pragma once
 #include "Card.h"
+
 class Credit :public Card
 {
 private:
@@ -7,13 +8,14 @@ private:
 	double curr_balance;
 	int limit;
 public:
+	//create a credit card
 	void EnterData();
-	void Print();
+	//top up the credit card
 	void TopUp();
 	void EnterCosts();
+	//return a choosen category
 	string ChooseCategory();
-	int GetAmountOfCard() {
-		return amount_of_card;
-	}
+	int GetAmountOfCard();
 	void ShowCategory();
+	void Print();
 };

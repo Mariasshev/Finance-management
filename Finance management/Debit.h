@@ -7,12 +7,18 @@ private:
 	double curr_balance;
 	int limit;
 public:
+	//create a debit card
 	void EnterData();
-	void Print();
+	//top up a debit card;
 	void TopUp();
+
 	void EnterCosts();
+	//return a choosen category
 	string ChooseCategory();
+	//return amount of cards
 	int GetAmountOfCard();
+	//show all category for user
 	void ShowCategory();
+	void Print();
 };
 

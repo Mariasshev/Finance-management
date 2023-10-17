@@ -5,20 +5,25 @@
 #include <string>
 using namespace std;
 
-
-class Finance: public Category{
+class Finance: public Category
+{
 protected:
 	double curr_balance;
 	double total_expanses;
-	vector<Category> arr;
+	//an array for data (category, date, expanses)
+	vector<Category> inf;
 public:
 	Finance() = default;
 	
-	virtual void TopUp()=0;		//to top up a card or add cash to wallet
-	virtual void EnterCosts()=0;		//enter costs 
+	//to top up a card or add cash to wallet
+	virtual void TopUp()=0;	
+	//enter costs 
+	virtual void EnterCosts() = 0;
+	//show
 	virtual void Print();
-	double GetBalance();
-	void WriteReportToFile();
+	//to write report in file
+	void ReportByCategory();			
 	void RatingMax();
+	double GetBalance();
 };
 

@@ -1,15 +1,16 @@
 #pragma once
 #include <iostream>
-#include <vector>
-#include <map>
 using namespace std;
 
-struct Category {
+class Category 
+{
+public:       
     string category;
-    int day;
+    //day + month for date
+    int day;          
     int month;
-    double costs;
-    string type;
+    //expenses
+    double costs;     
 };
 
 

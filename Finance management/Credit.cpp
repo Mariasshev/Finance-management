@@ -1,18 +1,20 @@
 #include "Credit.h"
 #include <iostream>
 using namespace std;
-
 //int Card::amount_of_card = 0;
+
+
 void Credit::EnterData()
 {
-	cout << "Enter fio: ";
+	cout << "Enter FIO: ";
 	cin.ignore();
-	getline(cin, this->fio);
+	getline(cin, this->FIO);
 	cout << "Your phone number: ";
-	cin >> this->phone;
+	cin >> this->phoneNumber;
 	cout << "Create a pin: ";
 	int pincode;
 	cin >> pincode;
+	//add a pincode
 	pin[amount_of_card] = pincode;
 	cout << "Choose a payment system\n[1] - visa\n[2] - mastercard\n";
 	int payment;
@@ -40,6 +42,7 @@ void Credit::EnterData()
 void Credit::Print()
 {
 	for (int i = 0; i < amount_of_card; i++) {
+		cout << "-------------------------" << endl;
 		cout << "Your " << i + 1 << " card: " << endl;
 		cout << "System payment: " << paymentSystem[i] << endl;
 		cout << "Balance: " << this->GetBalance() << "$" << endl;
@@ -107,11 +110,15 @@ string Credit::ChooseCategory()
 	} while (!check);
 }
 
+int Credit::GetAmountOfCard()
+{
+	return amount_of_card;
+}
+
 
 void Credit::EnterCosts()
 {
-	int pinCheck;
-	int day = 10, month = 12;
+	int pinCheck, day, month;
 	double costs;
 	cout << "Enter pin: ";
 	cin >> pinCheck;
@@ -130,14 +137,14 @@ void Credit::EnterCosts()
 			cin >> day;
 			cout << "Enter month: ";
 			cin >> month;
-			arr.push_back(Category{ categoryName , day , month, costs, type = "card" });
-			for (size_t i = 0; i < arr.size(); ++i) {
-				for (size_t j = 0; j < arr.size(); ++j) {
-					cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs << "\tDate: " << arr[i].day << "/" << arr[i].month << "\tType: " << arr[i].type << endl;
+			inf.push_back(Category{ categoryName,  day , month, costs });
+			for (size_t i = 0; i < inf.size(); ++i) {
+				for (size_t j = 0; j < inf.size(); ++j) {
+					cout << "Category: " << inf[i].category << "\tCosts: " << inf[i].costs << "\tDate: " << inf[i].day << "/" << inf[i].month << endl;
 					i++;
 				}
 			}
-			curr_balance -= costs;
+			curr_balance -= costs;			//update balance
 			total_expanses += costs;
 			Print();
 		}

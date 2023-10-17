@@ -3,13 +3,14 @@
 using namespace std;
 
 int Card::amount_of_card = 0;
+
 void Debit::EnterData()
 {
-	cout << "Enter fio: ";
+	cout << "Enter FIO: ";
 	cin.ignore();
-	getline(cin, this->fio);
+	getline(cin, this->FIO);
 	cout << "Your phone number: ";
-	cin >> this->phone;
+	cin >> this->phoneNumber;
 	cout << "Create a pin: ";
 	int pincode;
 	cin >> pincode;
@@ -40,10 +41,11 @@ void Debit::EnterData()
 void Debit::Print()
 {
 	for (int i = 0; i < amount_of_card; i++) {
+		cout << "-------------------------" << endl;
 		cout << "Your " << i+1 << " card: " << endl;
 		cout << "System payment: " << paymentSystem[i] << endl;
 		cout << "Balance: " << this->GetBalance() << "$" << endl;
-		cout << "-------------------------" << endl;
+		cout << "-------------------------" << endl << endl;
 	}
 }
 
@@ -120,7 +122,9 @@ void Debit::EnterCosts()
 	double costs;
 	cout << "Enter pin: ";
 	cin >> pinCheck;
-	if (pinCheck == pin[amount_of_card]) {
+
+	if (pinCheck == pin[amount_of_card]) //check pin 
+	{
 		cout << "access is open!" << endl;
 		cout << "Enter costs: ";
 		cin >> costs;
@@ -135,15 +139,14 @@ void Debit::EnterCosts()
 			cin >> day;
 			cout << "Enter month: ";
 			cin >> month;
-			arr.push_back(Category{ categoryName , day , month, costs, type = "card" });
-			for (size_t i = 0; i < arr.size(); ++i) {
-				for (size_t j = 0; j < arr.size(); ++j) {
-					cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs << "\tDate: " << arr[i].day << "/" << arr[i].month << "\tType: "<< arr[i].type << endl;
+			inf.push_back(Category{ categoryName, day , month, costs });
+			for (size_t i = 0; i < inf.size(); ++i) {
+				for (size_t j = 0; j < inf.size(); ++j) {
+					cout << "Category: " << inf[i].category << "\tCosts: " << inf[i].costs << "\tDate: " << inf[i].day << "/" << inf[i].month << endl;
 					i++;
 				}
 			}
 			curr_balance -= costs;
-			total_expanses += costs;
 			Print();
 		}
 	}

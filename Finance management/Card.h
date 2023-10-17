@@ -4,19 +4,24 @@
 class Card :public Finance
 {
 protected:
-	string fio;
-	int phone;
+	string FIO;
+	int phoneNumber;
 	int* pin;
 	string* paymentSystem;
 	static int amount_of_card;
 	int limit;
 public:
 	Card();
-	void EnterData();
-	void TopUp();	
-	void EnterCosts();
-	void Print();
+	virtual void EnterData();
+	virtual void TopUp();	
+	virtual void EnterCosts();
+	virtual void Print();
+	//set a paymentSystem
 	void SetPayment(string* p);
+
+
+	//getters
+	string* GetPayment();
 	int GetAmountOfCard();
 	~Card();
 };

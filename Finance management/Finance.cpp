@@ -13,7 +13,7 @@ double Finance::GetBalance()
 	return curr_balance;
 }
 
-void Finance::WriteReportToFile()
+void Finance::ReportByCategory()
 {
 	{
 		string fileName = "expenses.txt";
@@ -35,17 +35,13 @@ void Finance::WriteReportToFile()
 			if (out.is_open())
 			{
 				out << "Report for " << day << "/" << month << "\t" << endl;
-				for (size_t i = 0; i < arr.size(); ++i) {
-					for (size_t j = 0; j < arr.size(); ++j) {
-						if (day == arr[i].day || month == arr[i].month) {
-							//cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs << "\tDate: " << arr[i].day << "/" << arr[i].month << "\tType: " << arr[i].type << endl;
-							//i++;
-
-							report = arr[i].category + ": " + to_string(arr[i].costs) + "$\n";
+				for (size_t i = 0; i < inf.size(); ++i) {
+					for (size_t j = 0; j < inf.size(); ++j) {
+						if (day == inf[i].day || month == inf[i].month) {
+							report = inf[i].category + ": " + to_string(inf[i].costs) + "$\n";
 							out << report;
 							i++;
 						}
-
 					}
 				}
 				out.close();
@@ -61,13 +57,13 @@ void Finance::WriteReportToFile()
 			{
 				int stop = 0;
 				out << "Report for " << day << "/" << month << " to " << day + 7 << "/" << month << endl;
-				for (size_t i = 0; i < arr.size(); ++i) {
-					for (size_t j = 0; j < arr.size(); ++j) {
-						if (day == arr[i].day || month == arr[i].month) {
+				for (size_t i = 0; i < inf.size(); ++i) {
+					for (size_t j = 0; j < inf.size(); ++j) {
+						if (day == inf[i].day || month == inf[i].month) {
 							if (stop == 7) {
 								break;
 							}
-							report = arr[i].category + ": " + to_string(arr[i].costs) + "$\n";
+							report = inf[i].category + ": " + to_string(inf[i].costs) + "$\n";
 							out << report;
 							i++;
 							stop++;
@@ -88,13 +84,13 @@ void Finance::WriteReportToFile()
 			{
 				int stop = 0;
 				out << "Report for " << day << "/" << month << " to " << day + 7 << "/" << month << endl;
-				for (size_t i = 0; i < arr.size(); ++i) {
-					for (size_t j = 0; j < arr.size(); ++j) {
-						if (day == arr[i].day || month == arr[i].month) {
+				for (size_t i = 0; i < inf.size(); ++i) {
+					for (size_t j = 0; j < inf.size(); ++j) {
+						if (day == inf[i].day || month == inf[i].month) {
 							if (stop == 30) {
 								break;
 							}
-							report = arr[i].category + ": " + to_string(arr[i].costs) + "$\n";
+							report = inf[i].category + ": " + to_string(inf[i].costs) + "$\n";
 							out << report;
 							i++;
 							stop++;
@@ -134,26 +130,26 @@ void Finance::RatingMax()
 			if (out.is_open())
 			{
 				int stop = 0;
-				int max = arr[0].costs;
+				int max = inf[0].costs;
 				int index;
 				out << "Rating for top-3 expanses in week:" << endl;
-				for (size_t i = 0; i < arr.size(); ++i) {
-					for (size_t j = 0; j < arr.size(); ++j) {
+				for (size_t i = 0; i < inf.size(); ++i) {
+					for (size_t j = 0; j < inf.size(); ++j) {
 
 						if (stop == 7) {
 							break;
 						}
 						else {
-							if (arr[i].costs > max)
+							if (inf[i].costs > max)
 							{
-								max = arr[i].costs;
+								max = inf[i].costs;
 								index = i;
 							}
 						}
 						stop++;
 					}
 				}
-				report = arr[index].category + ": " + to_string(max) + "$\n";
+				report = inf[index].category + ": " + to_string(max) + "$\n";
 				out << report;
 
 				out.close();
@@ -171,15 +167,15 @@ void Finance::RatingMax()
 				int count = 0;
 
 				out << "Rating for top-3 expanses in month:" << endl;
-				for (size_t i = 0; i < arr.size(); ++i) {
-					for (size_t j = 0; j < arr.size(); ++j) {
+				for (size_t i = 0; i < inf.size(); ++i) {
+					for (size_t j = 0; j < inf.size(); ++j) {
 
 						if (stop == 30 || count == 3)
 						{
 							break;
 						}
 						else {
-							report = arr[i].category + ": " + to_string(arr[i].costs) + "$\n";
+							report = inf[i].category + ": " + to_string(inf[i].costs) + "$\n";
 							out << report;
 							count++;
 						}

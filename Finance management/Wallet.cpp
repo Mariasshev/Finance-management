@@ -4,7 +4,6 @@
 #include <iostream>
 #include <windows.h>
 #include <vector>
-#include <map>
 #include <string>
 using namespace std;
 
@@ -13,7 +12,7 @@ void Wallet::TopUp()
 	double replenishment;
 	do 
 	{
-		cout << "Add: ";
+		cout << "Add in wallet: ";
 		cin >> replenishment;
 		if (replenishment < 1) 
 		{
@@ -31,23 +30,22 @@ void Wallet::EnterCosts()
 	double costs;
 	cout << "Enter costs: ";
 	cin >> costs;
-	if (costs > curr_balance) {
+	if (costs > curr_balance)
+	{
 		cout << "It`s " << costs - curr_balance << "$ more than you have!" << endl;
 	}
 	else {
+		//choose a category
 		string categoryName = ChooseCategory();
-		//cin.ignore();
-		//cout << "Enter category: ";
-		//getline(cin, categoryName);
 		string date;
 			cout << "Enter day: ";
 			cin >> day;
 			cout << "Enter month: ";
 			cin >> month;
-			arr.push_back(Category{ categoryName , day , month, costs, type="wallet"});
-			for (size_t i = 0; i < arr.size(); ++i) {
-				for (size_t j = 0; j < arr.size(); ++j) {
-					cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs  << "\tDate: " << arr[i].day << "/" << arr[i].month <<"\tType: "<< arr[i].type<< endl;
+			inf.push_back(Category{ categoryName, day , month, costs});
+			for (size_t i = 0; i < inf.size(); ++i) {
+				for (size_t j = 0; j < inf.size(); ++j) {
+					cout << "Category: " << inf[i].category << "\tCosts: " << inf[i].costs  << "\tDate: " << inf[i].day << "/" << inf[i].month << endl;
 					i++;
 				}
 			}
@@ -59,8 +57,8 @@ void Wallet::EnterCosts()
 
 void Wallet::Print()
 {
-	cout << "Your wallet: " << endl;
-	cout << "Current balance: " << curr_balance << "$" << endl;
+	cout << "\t\t\t\tYour wallet: " << endl;
+	cout << "\t\t\t\tCurrent balance: " << curr_balance << "$" << endl;
 }
 
 double Wallet::GetCurrBal()
