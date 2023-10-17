@@ -107,11 +107,16 @@ string Debit::ChooseCategory()
 	} while (!check);
 }
 
+int Debit::GetAmountOfCard()
+{
+	return amount_of_card;
+}
+
 
 void Debit::EnterCosts()
 {
 	int pinCheck;
-	int day=10, month=12;
+	int day, month;
 	double costs;
 	cout << "Enter pin: ";
 	cin >> pinCheck;

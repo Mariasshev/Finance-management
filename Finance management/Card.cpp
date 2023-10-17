@@ -1,8 +1,13 @@
 #include "Card.h"
 
+Card::Card()
+{
+	paymentSystem = new string[3];
+	pin = new int[3];
+}
+
 void Card::EnterData()
 {
-	cout << "Hello!" << endl;
 }
 
 void Card::TopUp()
@@ -20,4 +25,15 @@ void Card::Print()
 void Card::SetPayment(string* p)
 {
 	paymentSystem = p;
+}
+
+int Card::GetAmountOfCard()
+{
+	return amount_of_card;
+}
+
+Card::~Card()
+{
+	delete[] paymentSystem;
+	delete[] pin;
 }

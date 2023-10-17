@@ -10,17 +10,12 @@ private:
 	double balance;
 	
 public:
-	
-	//Wallet() = default;
-	virtual void TopUp();
+
+	void TopUp();
 	void EnterCosts();
-	virtual void Print();
+	void Print();
 	double GetCurrBal(); 
 	void ShowCategory();
 	string ChooseCategory();
-	/*void ShowDate() {
-		for (auto it = date.begin(); it != date.end(); it++) {
-			cout << it->first << "/" << it->second << endl;
-		}
-	}*/
+
 };

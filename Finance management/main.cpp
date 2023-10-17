@@ -3,9 +3,9 @@
 #include "Card.h"
 #include "Debit.h"
 #include "Credit.h"
+#include "Category.h"
 #include <iostream>
 #include <vector>
-#include <map>
 
 using namespace std;
 
@@ -25,7 +25,6 @@ void Menu()
 }
 
 void SelectOperation() {
-	Finance* finance = nullptr;
 	Card* debit = new Debit();
 	Card* credit = new Credit();
 	Wallet wallet;

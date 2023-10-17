@@ -132,7 +132,6 @@
     <ClCompile Include="Debit.cpp" />
     <ClCompile Include="Finance.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Wallet.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +140,6 @@
     <ClInclude Include="Credit.h" />
     <ClInclude Include="Debit.h" />
     <ClInclude Include="Finance.h" />
-    <ClInclude Include="Time.h" />
     <ClInclude Include="Wallet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

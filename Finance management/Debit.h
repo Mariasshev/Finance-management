@@ -7,14 +7,12 @@ private:
 	double curr_balance;
 	int limit;
 public:
-	void virtual EnterData();
-	virtual void Print();
-	virtual void TopUp();
-	virtual void EnterCosts();
+	void EnterData();
+	void Print();
+	void TopUp();
+	void EnterCosts();
 	string ChooseCategory();
-	int GetAmountOfCard() {
-		return amount_of_card;
-	}
+	int GetAmountOfCard();
 	void ShowCategory();
 };
 
