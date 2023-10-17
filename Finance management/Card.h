@@ -11,7 +11,8 @@ protected:
 	static int amount_of_card;
 	int limit;
 public:
-	Card() {
+	Card() 
+	{
 		paymentSystem = new string[3];
 		pin = new int[3];
 	}
@@ -25,6 +26,7 @@ public:
 	}
 	virtual ~Card(){
 		delete[] paymentSystem;
+		delete[] pin;
 	}
 };
 

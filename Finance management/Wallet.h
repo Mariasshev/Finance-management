@@ -7,7 +7,8 @@ using namespace std;
 class Wallet: public Finance
 {
 private:
-	//map<string, Category> categories;
+	double balance;
+	
 public:
 	
 	//Wallet() = default;
@@ -17,5 +18,9 @@ public:
 	double GetCurrBal(); 
 	void ShowCategory();
 	string ChooseCategory();
-	//void AddCategory(const string& categoryName);
+	/*void ShowDate() {
+		for (auto it = date.begin(); it != date.end(); it++) {
+			cout << it->first << "/" << it->second << endl;
+		}
+	}*/
 };

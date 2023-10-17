@@ -25,11 +25,9 @@ void Wallet::TopUp()
 	cout << "Your current balance: " << GetCurrBal() << "$" << endl;
 }
 
-void ShowCategory() {
-}
 void Wallet::EnterCosts()
 {
-	
+	int day, month;
 	double costs;
 	cout << "Enter costs: ";
 	cin >> costs;
@@ -38,23 +36,31 @@ void Wallet::EnterCosts()
 	}
 	else {
 		string categoryName = ChooseCategory();
-		if (category.find(categoryName) != category.end()) {
-			category[categoryName] = costs;
+		//cin.ignore();
+		//cout << "Enter category: ";
+		//getline(cin, categoryName);
+		string date;
+			cout << "Enter day: ";
+			cin >> day;
+			cout << "Enter month: ";
+			cin >> month;
+			arr.push_back(Category{ categoryName , day , month, costs, type="wallet"});
+			for (size_t i = 0; i < arr.size(); ++i) {
+				for (size_t j = 0; j < arr.size(); ++j) {
+					cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs  << "\tDate: " << arr[i].day << "/" << arr[i].month <<"\tType: "<< arr[i].type<< endl;
+					i++;
+				}
+			}
 			curr_balance -= costs;
+			total_expanses +=costs;
 			Print();
-		}
-		else {
-			cout << "There is no such category" << endl;
-		}
-		
 	}
-	
 }
 
 void Wallet::Print()
 {
 	cout << "Your wallet: " << endl;
-	cout << "Current balance: " << curr_balance << endl;
+	cout << "Current balance: " << curr_balance << "$" << endl;
 }
 
 double Wallet::GetCurrBal()
@@ -68,10 +74,9 @@ string Wallet::ChooseCategory()
 	string categoryName;
 	int count = 1;
 	cout << "Categories: " << endl;
+	ShowCategory();
 	cout << endl << endl;
-	for (auto it = category.begin(); it != category.end(); it++) {
-		cout << "\t[" << count++ << "] " << it->first << endl;
-	}
+
 	bool check = false;
 	do {
 		cout << "Choose a category: ";
@@ -104,7 +109,9 @@ string Wallet::ChooseCategory()
 
 void Wallet::ShowCategory()
 {
-	for (auto it = category.begin(); it != category.end(); it++) {
-		cout << it->first << " ---- " << it->second << endl;
-	}
+	cout << "[1] - Cafe" << endl;
+	cout << "[2] - Clothes" << endl;
+	cout << "[3] - Entertaiment" << endl;
+	cout << "[4] - Health" << endl;
+	cout << "[5] - Products" << endl;
 }

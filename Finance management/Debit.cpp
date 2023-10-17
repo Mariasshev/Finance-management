@@ -61,6 +61,14 @@ void Debit::TopUp()
 		cout << "Your balance: " << curr_balance << endl;
 	}
 }
+void Debit::ShowCategory()
+{
+	cout << "[1] - Cafe" << endl;
+	cout << "[2] - Clothes" << endl;
+	cout << "[3] - Entertaiment" << endl;
+	cout << "[4] - Health" << endl;
+	cout << "[5] - Products" << endl;
+}
 
 string Debit::ChooseCategory()
 {
@@ -68,10 +76,8 @@ string Debit::ChooseCategory()
 	string categoryName;
 	int count = 1;
 	cout << "Categories: " << endl;
+	ShowCategory();
 	cout << endl << endl;
-	for (auto it = category.begin(); it != category.end(); it++) {
-		cout << "\t[" << count++ << "] " << it->first << endl;
-	}
 	bool check = false;
 	do {
 		cout << "Choose a category: ";
@@ -105,32 +111,38 @@ string Debit::ChooseCategory()
 void Debit::EnterCosts()
 {
 	int pinCheck;
+	int day=10, month=12;
 	double costs;
 	cout << "Enter pin: ";
 	cin >> pinCheck;
-	for (int i = 0; i < amount_of_card; i++) {
-		if (pinCheck == pin[i]) {
-			cout << "access is open!" << endl;
-			cout << "Enter costs: ";
-			cin >> costs;
-			if (costs > curr_balance) {
-				cout << "It`s " << costs - curr_balance << "$ more than you have!" << endl;
-			}
-			else 
-			{
-				string categoryName = ChooseCategory();
-				if (category.find(categoryName) != category.end()) 
-				{
-					category[categoryName] = costs;
-					curr_balance -= costs;
-					Print();
-				}
-				else 
-				{
-					cout << "There is no such category" << endl;
-				}
-
-			}
+	if (pinCheck == pin[amount_of_card]) {
+		cout << "access is open!" << endl;
+		cout << "Enter costs: ";
+		cin >> costs;
+		if (costs > curr_balance) {
+			cout << "It`s " << costs - curr_balance << "$ more than you have!" << endl;
 		}
+		else
+		{
+			string categoryName = ChooseCategory();
+			string date;
+			cout << "Enter day: ";
+			cin >> day;
+			cout << "Enter month: ";
+			cin >> month;
+			arr.push_back(Category{ categoryName , day , month, costs, type = "card" });
+			for (size_t i = 0; i < arr.size(); ++i) {
+				for (size_t j = 0; j < arr.size(); ++j) {
+					cout << "Category: " << arr[i].category << "\tCosts: " << arr[i].costs << "\tDate: " << arr[i].day << "/" << arr[i].month << "\tType: "<< arr[i].type << endl;
+					i++;
+				}
+			}
+			curr_balance -= costs;
+			total_expanses += costs;
+			Print();
+		}
+	}
+	else {
+		cout << "Wrong pin!" << endl;
 	}
 }

@@ -34,6 +34,8 @@ void SelectOperation() {
 	int choice;
 	int choice4;
 	int choice4_1;
+	int choice5;
+	int choice5_1;
 	int userAsw;
 	bool check2 = true;
 	bool check = true;
@@ -92,7 +94,6 @@ void SelectOperation() {
 				case 2:
 					if (credit->GetAmountOfCard() > 1)
 					{
-						//поменять каунтер
 						cout << "You have " << credit->GetAmountOfCard() << " credit cards. Choose one card: " << endl;
 						debit->Print();
 						cout << endl;
@@ -166,7 +167,7 @@ void SelectOperation() {
 		case 4:
 			system("CLS");
 			do {
-				cout << "Withdraw money from: \n[1] - wallet \n [2] - debit card\n [3] - credit card";
+				cout << "Withdraw money from: \n [1] - wallet \n [2] - debit card\n [3] - credit card";
 				cout << "(your answer): ";
 				cin >> choice4;
 				switch (choice4) {
@@ -212,6 +213,37 @@ void SelectOperation() {
 					}
 					break;
 				case 3:
+					if (credit->GetAmountOfCard() > 1) {
+						cout << "You have " << debit->GetAmountOfCard() << " credit cards. Choose one card: " << endl;
+						credit->Print();
+						cout << endl;
+						do {
+							cout << "(your answer): ";
+							cin >> choice4_1;
+							switch (choice4_1)
+							{
+							case 1:
+								credit[0].EnterCosts();
+								break;
+							case 2:
+								credit[1].EnterCosts();
+								break;
+							case 3:
+								credit[2].EnterCosts();
+								break;
+							default:
+								cout << "Wrong choice!" << endl;
+								check4 = false;
+								break;
+							}
+						} while (!check4);
+					}
+					if (credit->GetAmountOfCard() == 0) {
+						cout << "You didn`t create a credit card!" << endl;
+					}
+					if (credit->GetAmountOfCard() == 1) {
+						credit->EnterCosts();
+					}
 					break;
 				default:
 					check2 = false;
@@ -221,10 +253,57 @@ void SelectOperation() {
 			break;
 		case 5:
 			system("CLS");
+			cout << "[1] - Report about expanses and categories\n[2] - Rating TOP-3 expanses\n[3] - rating TOP-3 categories\n ";
+			cout << "(your answer): ";
+			cin >> choice5;
+			if (choice5 == 1) 
+			{
+				cout << "[1] - wallet\n[2] - debit card\n";
+				cin >> choice5_1;
+				if (choice5_1 == 1) {
+					wallet.WriteReportToFile();
+				}
+				else if (choice5_1 == 2) {
+					debit->WriteReportToFile();
+				}
+				else {
+					cout << "Error" << endl;
+				}
+			}
+			else if (choice5 == 2) {
+				cout << "[1] - wallet\n[2] - debit card\n";
+				cin >> choice5_1;
+				if (choice5_1 == 1) {
+					wallet.RatingMax();
+				}
+				else if (choice5_1 == 2) {
+					debit->RatingMax();
+				}
+				else {
+					cout << "Error" << endl;
+				}
+			}
+			else if (choice5 == 3) {
+				cout << "[1] - wallet\n[2] - debit card\n";
+				cin >> choice5_1;
+				if (choice5_1 == 1) {
+					//wallet.RatingMax();	доделать
+				}
+				else if (choice5_1 == 2) {
+					//debit->RatingMax();	доделать
+				}
+				else {
+					cout << "Error" << endl;
+				}
+			}
+			else {
+				cout << "Error!" << endl;
+			}
 			break;
 		case 6:
 			system("CLS");
 			cout << "Exiting..." << endl;
+			check = true;
 			break;
 		default:
 			cout << "Try again" << endl;
@@ -245,6 +324,9 @@ void SelectOperation() {
 		}
 		system("CLS");
 	} while (!check);
+
+	delete[] debit;
+	delete[] credit;
 }
 
 int main()

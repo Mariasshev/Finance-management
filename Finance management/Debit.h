@@ -15,5 +15,6 @@ public:
 	int GetAmountOfCard() {
 		return amount_of_card;
 	}
+	void ShowCategory();
 };
 
